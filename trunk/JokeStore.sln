@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JokeStore.Core", "JokeStore.Core\JokeStore.Core.csproj", "{62B3494A-F4EF-4860-B165-14D4B9088E20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JokeStore.Web", "JokeStore.Web\JokeStore.Web.csproj", "{67778E9A-59EA-4EFC-A020-ADB625EFC282}"
+EndProject
+Project("{2CFEAB61-6A3B-4EB8-B523-560B4BEEF521}") = "JokeStore.DeployWeb", "JokeStore.DeployWeb\JokeStore.DeployWeb.wdproj", "{A6BAD396-E25E-43AA-BC93-51BACD1550F8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{62B3494A-F4EF-4860-B165-14D4B9088E20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62B3494A-F4EF-4860-B165-14D4B9088E20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62B3494A-F4EF-4860-B165-14D4B9088E20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62B3494A-F4EF-4860-B165-14D4B9088E20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67778E9A-59EA-4EFC-A020-ADB625EFC282}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67778E9A-59EA-4EFC-A020-ADB625EFC282}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67778E9A-59EA-4EFC-A020-ADB625EFC282}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67778E9A-59EA-4EFC-A020-ADB625EFC282}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6BAD396-E25E-43AA-BC93-51BACD1550F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6BAD396-E25E-43AA-BC93-51BACD1550F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

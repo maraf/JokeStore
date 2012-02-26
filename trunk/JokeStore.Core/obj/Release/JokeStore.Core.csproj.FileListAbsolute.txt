@@ -1,0 +1,10 @@
+D:\Projects\VS10\WebSites\JokeStore\JokeStore.Core\bin\Release\JokeStore.Core.dll
+D:\Projects\VS10\WebSites\JokeStore\JokeStore.Core\bin\Release\JokeStore.Core.pdb
+D:\Projects\VS10\WebSites\JokeStore\JokeStore.Core\bin\Release\EntityFramework.dll
+D:\Projects\VS10\WebSites\JokeStore\JokeStore.Core\bin\Release\Ninject.dll
+D:\Projects\VS10\WebSites\JokeStore\JokeStore.Core\bin\Release\EntityFramework.xml
+D:\Projects\VS10\WebSites\JokeStore\JokeStore.Core\bin\Release\Ninject.pdb
+D:\Projects\VS10\WebSites\JokeStore\JokeStore.Core\bin\Release\Ninject.xml
+D:\Projects\VS10\WebSites\JokeStore\JokeStore.Core\obj\Release\ResolveAssemblyReference.cache
+D:\Projects\VS10\WebSites\JokeStore\JokeStore.Core\obj\Release\JokeStore.Core.dll
+D:\Projects\VS10\WebSites\JokeStore\JokeStore.Core\obj\Release\JokeStore.Core.pdb
