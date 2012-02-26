@@ -1,0 +1,36 @@
+﻿@model JokeStore.Core.Entity.Entry
+
+<div class="entry">
+    @if (Model.ImageData != null)
+    { 
+        <div class="entry-image">
+            <img src="@Url.Action("getimage", "entry", new { EntryID = Model.ID })" title="@UI.CutString(Model.Content)" alt="@UI.CutString(Model.Content)" />
+        </div>
+    }
+    <div class="entry-content">
+        @Html.Raw(Model.Content.Replace(Environment.NewLine, "<br />"))
+    </div>
+    <div class="entry-info">
+        <div class="entry-created">
+            @Model.Created
+        </div>
+        <div class="entry-category">
+            @Model.Category
+        </div>
+
+        <div class="entry-thumb">
+            <a class="vote vote-up" href="@Url.Action("vote", "entry", new { EntryID = Model.ID, Direction = "up", ReturnUrl = Request.Url.PathAndQuery })">
+                <span>Vote Up</span>
+            </a>
+            <a class="vote vote-down" href="@Url.Action("vote", "entry", new { EntryID = Model.ID, Direction = "down", ReturnUrl = Request.Url.PathAndQuery })">
+                <span>Vote Down</span>
+            </a>
+            <div class="clear"></div>
+        </div>
+        <div class="entry-popularity" title="@Model.ThumbsUp up and @Model.ThumbsDown down">
+            <div class="entry-popularity-value" style="width: @UI.CalculatePecentage(Model.Votes, Model.ThumbsUp)%"></div>
+        </div>
+
+        <div class="clear"></div>
+    </div>
+</div>

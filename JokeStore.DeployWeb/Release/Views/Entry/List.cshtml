@@ -1,0 +1,27 @@
+﻿@model JokeStore.Web.Models.EntryListViewModel
+@{
+    ViewBag.Title = Model.Category;
+}
+
+<div class="sub-head">
+    <div class="paging" style="float: right;">
+        @UI.PageLinks(Model.PagingInfo, x => Url.Action("List", new { page = x, category = Model.CategoryUrl }))
+    </div>
+    <h2>
+        @if (Model.Category != null) { 
+            @Model.Category
+        } else { 
+            <text>Home</text>
+        }
+    </h2>
+    <div class="clear"></div>
+</div>
+
+@foreach (var entry in Model.Entries)
+{ 
+    @Html.Partial("EntrySummary", entry)
+}
+
+<div class="paging">
+    @UI.PageLinks(Model.PagingInfo, x => Url.Action("List", new { page = x, category = Model.CategoryUrl }))
+</div>
