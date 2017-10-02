@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using JokeStore.Core.Entity;
 using System.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace JokeStore.Core.Repository.EntityFramework
 {

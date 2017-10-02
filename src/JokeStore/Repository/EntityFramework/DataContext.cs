@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Data.Entity;
 using JokeStore.Core.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace JokeStore.Core.Repository.EntityFramework
 {
