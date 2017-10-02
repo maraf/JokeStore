@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    @Html.Action("HtmlHead", "Layout")
+    @Html.Partial("HtmlHead", "Shared")
 </head>
 <body>
 
@@ -24,14 +24,14 @@
                 <a href="@Url.Action("login", "account")" class="login-form">Login</a>
             }
 
-            @Html.Action("WebHead", "Layout")
+            @Html.Partial("WebHead", "Shared")
         </div>
         <div class="body">
             <div class="category left">
-                @Html.Action("Menu", "Category")
+                @Html.Partial("Menu")
             </div>
             <div class="content left">
-                @UI.Message(TempData["Message"] as JokeStore.Web.Models.HtmlMessage)
+                @*@UI.Message(TempData["Message"] as JokeStore.Web.Models.HtmlMessage)*@
 
                 @RenderBody()
             </div>

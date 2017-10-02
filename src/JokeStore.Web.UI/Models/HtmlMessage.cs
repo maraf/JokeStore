@@ -5,6 +5,7 @@ using System.Web;
 
 namespace JokeStore.Web.Models
 {
+    [Serializable]
     public class HtmlMessage
     {
         public string Content { get; set; }

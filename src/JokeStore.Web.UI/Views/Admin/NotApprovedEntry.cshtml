@@ -1,7 +1,4 @@
 ﻿@model IEnumerable<JokeStore.Core.Entity.Entry>
-@{ 
-    Layout = null;
-}
 
 <div class="sub-head">
     <div class="right">
@@ -27,7 +24,7 @@
                 @using (Html.BeginForm("approveentry", "admin", FormMethod.Post, new { @class = "inline-form" }))
                 {
                     @Html.Hidden("EntryID", entry.ID)
-                    @Html.Hidden("ReturnUrl", Request.Url.PathAndQuery)
+                    @Html.Hidden("ReturnUrl", Context.Request.Path)
                     <input class="link-button" type="submit" value="Approve" />
                 }
 
@@ -36,7 +33,7 @@
                 @using (Html.BeginForm("deleteentry", "admin", FormMethod.Post, new { @class = "inline-form" }))
                 {
                     @Html.Hidden("EntryID", entry.ID)
-                    @Html.Hidden("ReturnUrl", Request.Url.PathAndQuery)
+                    @Html.Hidden("ReturnUrl", Context.Request.Path)
                     <input class="link-button" type="submit" value="Delete" />
                 }
             </td>

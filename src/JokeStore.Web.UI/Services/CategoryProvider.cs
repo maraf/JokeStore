@@ -1,28 +1,24 @@
-﻿using JokeStore.Core.Entity;
-using JokeStore.Core.Repository;
+﻿using JokeStore.Core.Repository;
 using JokeStore.Web.Models;
-using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace JokeStore.Web.Controllers
+namespace JokeStore.Web.Services
 {
-    public class CategoryController : Controller
+    public class CategoryProvider
     {
         private IEntryRepository repository;
 
-        public CategoryController(IEntryRepository entRepo)
+        public CategoryProvider(IEntryRepository entRepo)
         {
             repository = entRepo;
         }
 
-        public ActionResult Menu(string category)
+        public IEnumerable<CategoryListViewModel> GetList()
         {
-            ViewBag.SelectedCategory = category;
-
             var result = repository.Entries
                 .Select(e => new { e.Category, e.CategoryUrl })
                 .Distinct()
@@ -32,7 +28,7 @@ namespace JokeStore.Web.Controllers
             foreach (var item in result)
                 categories.Add(new CategoryListViewModel(item.Category, item.CategoryUrl));
 
-            return PartialView(categories);
+            return categories;
         }
     }
 }

@@ -1,44 +1,49 @@
 ﻿using JokeStore.Web.Models;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
+using System.Security.Principal;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace JokeStore.Web.Controllers
 {
-    // TODO: Implementovat.
     public class AccountController : Controller
     {
-        //private IAuthProvider authProvider;
-
-        //public AccountController(IAuthProvider provider)
-        //{
-        //    authProvider = provider;
-        //}
-
         public ActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Login(LoginViewModel account, string returnUrl)
+        public async Task<ActionResult> Login(LoginViewModel account, string returnUrl)
         {
-            //if (ModelState.IsValid)
-            //{
-            //    if (authProvider.Authenticate(account.Username, account.Password))
-            //        return Redirect(returnUrl ?? Url.Action("index", "admin"));
-            //    else
-            //        TempData["Message"] = HtmlMessage.Create("Incorrect username or password!", HtmlMessageType.Error);
-            //}
+            if (ModelState.IsValid && account.Username == "admin" && account.Password == "51admin51")
+            {
+                ClaimsPrincipal principal = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>()
+                {
+                    new Claim(ClaimsIdentity.DefaultIssuer, "JokeStore"),
+                    new Claim(ClaimsIdentity.DefaultNameClaimType, "admin"),
+                    new Claim(ClaimsIdentity.DefaultRoleClaimType, "admin")
+                }, "DefaultAuthenticationScheme"));
+                await HttpContext.SignInAsync("DefaultAuthenticationScheme", principal);
+                return RedirectToAction("Index", "Admin");
+            }
+            else
+            {
+                //TempData["Message"] = HtmlMessage.Create("Incorrect username or password!", HtmlMessageType.Error);
+            }
+
             return View();
         }
 
         [HttpPost]
-        public ActionResult Logout()
+        public async Task<ActionResult> Logout()
         {
-            //authProvider.SignOut();
+            await HttpContext.SignOutAsync();
             return RedirectToAction("list", "entry");
         }
     }

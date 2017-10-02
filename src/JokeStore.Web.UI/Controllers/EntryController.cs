@@ -105,16 +105,16 @@ namespace JokeStore.Web.Controllers
 
                 //Save
                 repository.Save(entry);
-                TempData["Message"] = HtmlMessage.Create(
-                    domain.AutoApprove
-                        ? "Thanks for entry!"
-                        : "Thanks for entry! It will be visible after approval by admin."
-                );
-                return RedirectToAction("list");
+                //TempData["Message"] = HtmlMessage.Create(
+                //    domain.AutoApprove
+                //        ? "Thanks for entry!"
+                //        : "Thanks for entry! It will be visible after approval by admin."
+                //);
+                return RedirectToAction(nameof(List));
             }
             else
             {
-                TempData["Message"] = HtmlMessage.Create("There are some invalid fields!", HtmlMessageType.Error);
+                //TempData["Message"] = HtmlMessage.Create("There are some invalid fields!", HtmlMessageType.Error);
                 return View(entry);
             }
         }
@@ -125,10 +125,9 @@ namespace JokeStore.Web.Controllers
 
             Entry entry = repository.Entries.FirstOrDefault(e => e.ID == entryID);
 
-            // TODO: Request.GetTypedHeaders().Host.ToString()
             Vote vote = new Vote
             {
-                UserIdentifier = Request.GetTypedHeaders().Host.ToString(),
+                UserIdentifier = HttpContext.Connection.RemoteIpAddress.ToString(),
                 Value = up ? 1 : 0
             };
 

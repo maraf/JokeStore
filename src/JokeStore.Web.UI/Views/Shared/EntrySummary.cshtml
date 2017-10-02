@@ -19,10 +19,10 @@
         </div>
 
         <div class="entry-thumb">
-            <a class="vote vote-up" href="@Url.Action("vote", "entry", new { EntryID = Model.ID, Direction = "up", ReturnUrl = Request.Url.PathAndQuery })">
+            <a class="vote vote-up" href="@Url.Action("vote", "entry", new { EntryID = Model.ID, Direction = "up", ReturnUrl = Context.Request.Path })">
                 <span>Vote Up</span>
             </a>
-            <a class="vote vote-down" href="@Url.Action("vote", "entry", new { EntryID = Model.ID, Direction = "down", ReturnUrl = Request.Url.PathAndQuery })">
+            <a class="vote vote-down" href="@Url.Action("vote", "entry", new { EntryID = Model.ID, Direction = "down", ReturnUrl = Context.Request.Path })">
                 <span>Vote Down</span>
             </a>
             <div class="clear"></div>

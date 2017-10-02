@@ -1,6 +1,8 @@
-﻿using JokeStore.Core.Repository;
+﻿using JokeStore.Core.Entity;
+using JokeStore.Core.Repository;
 using JokeStore.Core.Repository.EntityFramework;
 using JokeStore.Web.Core;
+using JokeStore.Web.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -24,12 +26,38 @@ namespace JokeStore.Web.UI
             services.AddMvc();
             services.AddDbContext<DataContext>(options => options.UseSqlite("Filename=JokeStore.db"));
 
+            services
+                .AddAuthentication("DefaultAuthenticationScheme")
+                .AddCookie("DefaultAuthenticationScheme", options =>
+                {
+                    options.AccessDeniedPath = "/account/forbidden";
+                    options.LoginPath = "/account/login";
+                    options.LogoutPath = "/account/logout";
+                });
+
+            services.AddTransient<CategoryProvider>();
             services.AddSingleton<IDomainResolver>(new RequestDomainResolver("localhost"));
+            services.AddScoped<Domain>(provider =>
+            {
+                var repository = provider.GetService<IRepository>();
+                var resolver = provider.GetService<IDomainResolver>();
+
+                Domain domain = repository.Domains.FirstOrDefault(d => d.Url == resolver.DomainName);
+                if (domain != null)
+                    return domain;
+
+                return new Domain
+                {
+                    Heading = "Unknown domain",
+                    SubHeading = "Sorry, but this not a known domain!"
+                };
+            });
             services.AddTransient<IRepository, Repository>();
             services.AddTransient<IDomainRepository, Repository>();
             services.AddTransient<IEntryRepository, Repository>();
 
-            services.Configure<RazorViewEngineOptions>(options => {
+            services.Configure<RazorViewEngineOptions>(options =>
+            {
                 options.ViewLocationExpanders.Add(new ViewLocationExpander());
             });
         }
@@ -55,6 +83,7 @@ namespace JokeStore.Web.UI
             }
 
             app.UseStaticFiles();
+            app.UseAuthentication();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(null,

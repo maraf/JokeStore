@@ -41,8 +41,8 @@ namespace JokeStore.Web.Controllers
             {
                 entry.Approved = true;
                 repository.Save(entry);
-                TempData["Message"] = HtmlMessage.Create(String.Format("Entry '{0}' approved.", StringUtil.Cut(entry.Content)));
-                return Redirect(returnUrl ?? Url.Action("index"));
+                //TempData["Message"] = HtmlMessage.Create(String.Format("Entry '{0}' approved.", StringUtil.Cut(entry.Content)));
+                return Redirect(returnUrl ?? Url.Action(nameof(NotApprovedEntry)));
             }
 
             return View();
@@ -70,7 +70,7 @@ namespace JokeStore.Web.Controllers
             if (ModelState.IsValid)
             {
                 repository.Save(entry);
-                return RedirectToAction("index");
+                return RedirectToAction(nameof(NotApprovedEntry));
             }
             return View(entry);
         }
@@ -82,7 +82,7 @@ namespace JokeStore.Web.Controllers
             if (entry != null)
                 repository.Delete(entry);
 
-            return View("index");
+            return RedirectToAction(nameof(NotApprovedEntry));
         }
 
         #endregion
@@ -109,7 +109,7 @@ namespace JokeStore.Web.Controllers
             if (ModelState.IsValid)
             {
                 repository.Save(domain);
-                return RedirectToAction("index");
+                return RedirectToAction(nameof(ListDomain));
             }
             return View(domain);
         }
@@ -126,13 +126,13 @@ namespace JokeStore.Web.Controllers
             if (domain != null && repository.Entries.Count(e => e.Domain.ID == domainID) == 0)
             {
                 repository.Delete(domain);
-                TempData["Message"] = HtmlMessage.Create(String.Format("Domain with url '{0}' deleted.", domain.Url));
-                return RedirectToAction("index");
+                //TempData["Message"] = HtmlMessage.Create(String.Format("Domain with url '{0}' deleted.", domain.Url));
+                return RedirectToAction(nameof(ListDomain));
             }
             else
             {
-                TempData["Message"] = HtmlMessage.Create("No such domain or domain contains entries!", HtmlMessageType.Error);
-                return RedirectToAction("index");
+                //TempData["Message"] = HtmlMessage.Create("No such domain or domain contains entries!", HtmlMessageType.Error);
+                return RedirectToAction(nameof(ListDomain));
             }
         }
 

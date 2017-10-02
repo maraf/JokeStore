@@ -1,0 +1,17 @@
+﻿@inject JokeStore.Web.Services.CategoryProvider provider
+
+@{
+    Layout = null;
+}
+
+@Html.ActionLink("Home", "list", "entry")
+
+@foreach (var link in provider.GetList())
+{
+    @Html.RouteLink(link.Name, new {
+        controller = "entry",
+        action = "list",
+        category = link.Url,
+        page = 1
+    })
+}
