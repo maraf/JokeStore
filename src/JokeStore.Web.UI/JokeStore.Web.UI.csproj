@@ -5,6 +5,63 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="Design\Images\Buttons\hborder.png" />
+    <Content Include="Design\Images\Thumb.png" />
+    <Content Include="Design\Images\ThumbDown.png" />
+    <Content Include="Design\Images\ThumbUp.png" />
+    <Content Include="Design\Scripts\jquery-1.5.1-vsdoc.js" />
+    <Content Include="Design\Scripts\jquery-1.5.1.js" />
+    <Content Include="Design\Scripts\jquery-1.5.1.min.js" />
+    <Content Include="Design\Scripts\jquery-ui-1.8.11.js" />
+    <Content Include="Design\Scripts\jquery-ui-1.8.11.min.js" />
+    <Content Include="Design\Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Design\Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Design\Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Design\Scripts\jquery.validate.js" />
+    <Content Include="Design\Scripts\jquery.validate.min.js" />
+    <Content Include="Design\Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Design\Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Design\Scripts\MicrosoftAjax.debug.js" />
+    <Content Include="Design\Scripts\MicrosoftAjax.js" />
+    <Content Include="Design\Scripts\MicrosoftMvcAjax.debug.js" />
+    <Content Include="Design\Scripts\MicrosoftMvcAjax.js" />
+    <Content Include="Design\Scripts\MicrosoftMvcValidation.debug.js" />
+    <Content Include="Design\Scripts\MicrosoftMvcValidation.js" />
+    <Content Include="Design\Scripts\modernizr-1.7.js" />
+    <Content Include="Design\Scripts\modernizr-1.7.min.js" />
+    <Content Include="Design\Styles\Common.css" />
+    <Content Include="Design\Styles\Design.css" />
+    <Content Include="Design\Styles\JokeStore.css" />
+    <Content Include="Design\Styles\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Design\Styles\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Design\Styles\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Design\Styles\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Design\Styles\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Design\Styles\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Design\Styles\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Design\Styles\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Design\Styles\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Design\Styles\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Design\Styles\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Design\Styles\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Design\Styles\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Design\Styles\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Design\Styles\themes\base\jquery.ui.all.css" />
+    <Content Include="Design\Styles\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Design\Styles\themes\base\jquery.ui.base.css" />
+    <Content Include="Design\Styles\themes\base\jquery.ui.button.css" />
+    <Content Include="Design\Styles\themes\base\jquery.ui.core.css" />
+    <Content Include="Design\Styles\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Design\Styles\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Design\Styles\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Design\Styles\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Design\Styles\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Design\Styles\themes\base\jquery.ui.slider.css" />
+    <Content Include="Design\Styles\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Design\Styles\themes\base\jquery.ui.theme.css" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
