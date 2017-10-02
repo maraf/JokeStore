@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JokeStore.Core", "JokeStore.Core\JokeStore.Core.csproj", "{62B3494A-F4EF-4860-B165-14D4B9088E20}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JokeStore.Web", "JokeStore.Web\JokeStore.Web.csproj", "{67778E9A-59EA-4EFC-A020-ADB625EFC282}"
@@ -26,5 +28,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6E89FD44-996E-43A5-AF7D-0F81C1E10B24}
 	EndGlobalSection
 EndGlobal
