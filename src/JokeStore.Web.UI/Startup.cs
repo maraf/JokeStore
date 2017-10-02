@@ -4,6 +4,7 @@ using JokeStore.Web.Core;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -21,12 +22,16 @@ namespace JokeStore.Web.UI
         {
             services.AddEntityFrameworkSqlite();
             services.AddMvc();
-            services.AddDbContext<DataContext>(options => options.UseSqlite("Filename=Jokers.db"));
+            services.AddDbContext<DataContext>(options => options.UseSqlite("Filename=JokeStore.db"));
 
-            services.AddSingleton<IDomainResolver>(new RequestDomainResolver("jokes.neptuo.com"));
+            services.AddSingleton<IDomainResolver>(new RequestDomainResolver("localhost"));
             services.AddTransient<IRepository, Repository>();
             services.AddTransient<IDomainRepository, Repository>();
             services.AddTransient<IEntryRepository, Repository>();
+
+            services.Configure<RazorViewEngineOptions>(options => {
+                options.ViewLocationExpanders.Add(new ViewLocationExpander());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,6 +54,7 @@ namespace JokeStore.Web.UI
                 });
             }
 
+            app.UseStaticFiles();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(null,
@@ -87,6 +93,21 @@ namespace JokeStore.Web.UI
                 context.Response.StatusCode = 404;
                 await context.Response.WriteAsync("Not Found!");
             });
+        }
+    }
+
+    public class ViewLocationExpander : IViewLocationExpander
+    {
+        public IEnumerable<string> ExpandViewLocations(ViewLocationExpanderContext context, IEnumerable<string> viewLocations)
+        {
+            string[] locations = new string[] { "/Views/{2}/{1}/{0}.cshtml" };
+            return locations.Union(viewLocations);
+        }
+
+
+        public void PopulateValues(ViewLocationExpanderContext context)
+        {
+            context.Values["customviewlocation"] = nameof(ViewLocationExpander);
         }
     }
 }
