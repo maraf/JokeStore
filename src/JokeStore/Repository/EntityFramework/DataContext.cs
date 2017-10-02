@@ -9,10 +9,12 @@ namespace JokeStore.Core.Repository.EntityFramework
 {
     public class DataContext : DbContext
     {
+        public DataContext(DbContextOptions<DataContext> options)
+            : base(options)
+        { }
+
         public DbSet<Domain> Domains { get; set; }
-
         public DbSet<Entry> Entries { get; set; }
-
         public DbSet<Vote> Votes { get; set; }
     }
 }

@@ -37,7 +37,8 @@ namespace JokeStore.Core.Repository.EntityFramework
             get { return context.Domains.FirstOrDefault(d => d.Url == Resolver.DomainName); }
         }
 
-        public Repository(IDomainResolver resolver)
+        public Repository(DataContext context, IDomainResolver resolver)
+            : base(context)
         {
             Resolver = resolver;
         }

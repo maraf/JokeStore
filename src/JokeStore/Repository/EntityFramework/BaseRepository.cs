@@ -7,6 +7,11 @@ namespace JokeStore.Core.Repository.EntityFramework
 {
     public abstract class BaseRepository
     {
-        protected DataContext context = new DataContext();
+        protected readonly DataContext context;
+
+        public BaseRepository(DataContext context)
+        {
+            this.context = context;
+        }
     }
 }

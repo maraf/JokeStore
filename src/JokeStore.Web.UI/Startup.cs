@@ -1,6 +1,10 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using JokeStore.Core.Repository;
+using JokeStore.Core.Repository.EntityFramework;
+using JokeStore.Web.Core;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -17,6 +21,12 @@ namespace JokeStore.Web.UI
         {
             services.AddEntityFrameworkSqlite();
             services.AddMvc();
+            services.AddDbContext<DataContext>(options => options.UseSqlite("Filename=Jokers.db"));
+
+            services.AddSingleton<IDomainResolver>(new RequestDomainResolver("jokes.neptuo.com"));
+            services.AddTransient<IRepository, Repository>();
+            services.AddTransient<IDomainRepository, Repository>();
+            services.AddTransient<IEntryRepository, Repository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -25,6 +35,18 @@ namespace JokeStore.Web.UI
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
+                app.Use((context, next) =>
+                {
+                    if (env.IsDevelopment())
+                    {
+                        DataContext db = context.RequestServices.GetService<DataContext>();
+                        if (db.Database.EnsureCreated())
+                            DataContextInitializer.Seed(db);
+                    }
+
+                    return next.Invoke();
+                });
             }
 
             app.UseMvc(routes =>

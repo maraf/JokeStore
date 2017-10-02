@@ -27,18 +27,29 @@ namespace JokeStore.Web.Controllers
         public ActionResult List(string category = null, int page = 1)
         {
             string categoryName = null;
-            Entry tmp = repository.Entries.FirstOrDefault(e => e.CategoryUrl == category);
-            if (tmp != null)
-                categoryName = tmp.Category;
+            if (category != null)
+            {
+                Entry tmp = repository.Entries.FirstOrDefault(e => e.CategoryUrl == category);
+                if (tmp != null)
+                    categoryName = tmp.Category;
+            }
 
-            IEnumerable<Entry> result = repository.Entries
-                .Where(e => category == null || e.CategoryUrl == category)
+            IQueryable<Entry> result = repository.Entries;
+
+            if (categoryName != null)
+                result = result.Where(e => category == null || e.CategoryUrl == category);
+
+            result = result
                 .OrderByDescending(e => e.Created)
                 .Skip((page - 1) * PageSize)
                 .Take(PageSize);
 
             if (category != null)
                 result = result.Where(e => e.CategoryUrl == category);
+
+            int totalItems = category == null
+                ? repository.Entries.Count()
+                : repository.Entries.Where(e => e.CategoryUrl == category).Count();
 
             return View(new EntryListViewModel
             {
@@ -49,9 +60,7 @@ namespace JokeStore.Web.Controllers
                 {
                     CurrentPage = page,
                     ItemsPerPage = PageSize,
-                    TotalItems = category == null
-                        ? repository.Entries.Count()
-                        : repository.Entries.Where(e => e.CategoryUrl == category).Count()
+                    TotalItems = totalItems
                 }
             });
         }

@@ -10,7 +10,7 @@ namespace JokeStore.Web.Core
     public class DataContextInitializer// : DropCreateDatabaseIfModelChanges<DataContext>
     {
         //protected override void Seed(DataContext context)
-        public void Seed(DataContext context)
+        public static void Seed(DataContext context)
         {
             //Domains
             Domain domain;
