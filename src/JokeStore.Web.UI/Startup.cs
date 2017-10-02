@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace JokeStore.Web.UI
 {
@@ -27,7 +27,38 @@ namespace JokeStore.Web.UI
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(null,
+                    "",
+                    new { controller = "Entry", action = "List", category = (string)null, page = 1 }
+                );
+
+                routes.MapRoute(null,
+                    "page{page}",
+                    new { controller = "Entry", action = "List", category = (string)null },
+                    new { page = @"\d+" } // Constraints: page must be numerical
+                );
+
+                routes.MapRoute(null,
+                    "{category}",
+                    new { controller = "Entry", action = "List", page = 1 }
+                );
+
+                routes.MapRoute(null,
+                    "{category}/page{page}",
+                    new { controller = "Entry", action = "List" },
+                    new { page = @"\d+" }
+                );
+
+                routes.MapRoute(null,
+                    "vote/{entryID}/{direction}",
+                    new { controller = "Entry", action = "Vote" },
+                    new { entryID = @"\d+" }
+                );
+
+                routes.MapRoute(null, "{controller}/{action}");
+            });
 
             app.Run(async (context) =>
             {
